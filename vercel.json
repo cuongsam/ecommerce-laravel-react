@@ -1,0 +1,17 @@
+{
+  "builds": [
+    {
+      "src": "ecommerce-frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "ecommerce-frontend/dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/ecommerce-frontend/$1"
+    }
+  ]
+}
