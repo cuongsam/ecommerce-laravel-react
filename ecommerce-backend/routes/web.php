@@ -12,7 +12,12 @@ use App\Http\Controllers\Admin\ProfileController;
 
 // Test route
 Route::get('/test', function () {
-    return 'Web routes working!';
+    return response()->json([
+        'message' => 'Web routes working!',
+        'app_key' => config('app.key') ? 'Set' : 'Missing',
+        'session_driver' => config('session.driver'),
+        'database' => config('database.default'),
+    ]);
 });
 
 // Admin Routes
