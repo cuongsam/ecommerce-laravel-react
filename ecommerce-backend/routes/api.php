@@ -28,6 +28,8 @@ Route::get('/health', function () {
 // Seed data route (chỉ dùng 1 lần để tạo data mẫu)
 Route::post('/seed-data', function () {
     try {
+        $results = [];
+        
         // Create admin
         if (!User::where('email', 'admin@example.com')->exists()) {
             User::create([
@@ -39,73 +41,99 @@ Route::post('/seed-data', function () {
                 'phone' => '0123456789',
                 'address' => 'Hanoi, Vietnam',
             ]);
+            $results[] = 'Admin created';
         }
         
         // Create categories
-        $cat1 = Category::firstOrCreate(['slug' => 'scented-candles'], [
-            'name' => 'Scented Candles',
-            'description' => 'Premium scented candles',
-            'status' => true,
-        ]);
+        if (!Category::where('slug', 'scented-candles')->exists()) {
+            Category::create([
+                'name' => 'Scented Candles',
+                'slug' => 'scented-candles',
+                'description' => 'Premium scented candles',
+                'status' => true,
+            ]);
+        }
         
-        $cat2 = Category::firstOrCreate(['slug' => 'luxury-candles'], [
-            'name' => 'Luxury Candles',
-            'description' => 'High-end luxury candles',
-            'status' => true,
-        ]);
+        if (!Category::where('slug', 'luxury-candles')->exists()) {
+            Category::create([
+                'name' => 'Luxury Candles',
+                'slug' => 'luxury-candles',
+                'description' => 'High-end luxury candles',
+                'status' => true,
+            ]);
+        }
+        
+        $cat1 = Category::where('slug', 'scented-candles')->first();
+        $cat2 = Category::where('slug', 'luxury-candles')->first();
         
         // Create products
-        $p1 = Product::firstOrCreate(['slug' => 'lavender-dreams'], [
-            'name' => 'Lavender Dreams Candle',
-            'description' => 'Calming lavender scented candle for relaxation and better sleep',
-            'price' => 250000,
-            'sale_price' => 199000,
-            'stock' => 150,
-            'category_id' => $cat1->id,
-            'is_featured' => true,
-            'status' => true,
-        ]);
+        if (!Product::where('slug', 'lavender-dreams')->exists()) {
+            $p1 = Product::create([
+                'name' => 'Lavender Dreams Candle',
+                'slug' => 'lavender-dreams',
+                'description' => 'Calming lavender scented candle for relaxation and better sleep',
+                'price' => 250000,
+                'sale_price' => 199000,
+                'stock' => 150,
+                'category_id' => $cat1->id,
+                'is_featured' => true,
+                'status' => true,
+            ]);
+            
+            ProductImage::create([
+                'product_id' => $p1->id,
+                'image_url' => 'https://images.unsplash.com/photo-1602874801006-c2c0b6d6b602?w=800',
+                'is_primary' => true,
+            ]);
+            $results[] = 'Lavender Dreams created';
+        }
         
-        ProductImage::firstOrCreate(
-            ['product_id' => $p1->id, 'is_primary' => true],
-            ['image_url' => 'https://images.unsplash.com/photo-1602874801006-c2c0b6d6b602?w=800']
-        );
+        if (!Product::where('slug', 'vanilla-bliss')->exists()) {
+            $p2 = Product::create([
+                'name' => 'Vanilla Bliss Candle',
+                'slug' => 'vanilla-bliss',
+                'description' => 'Sweet vanilla scent creates a cozy atmosphere',
+                'price' => 280000,
+                'sale_price' => null,
+                'stock' => 120,
+                'category_id' => $cat1->id,
+                'is_featured' => true,
+                'status' => true,
+            ]);
+            
+            ProductImage::create([
+                'product_id' => $p2->id,
+                'image_url' => 'https://images.unsplash.com/photo-1604762524889-4b0e41d0e5d7?w=800',
+                'is_primary' => true,
+            ]);
+            $results[] = 'Vanilla Bliss created';
+        }
         
-        $p2 = Product::firstOrCreate(['slug' => 'vanilla-bliss'], [
-            'name' => 'Vanilla Bliss Candle',
-            'description' => 'Sweet vanilla scent creates a cozy atmosphere',
-            'price' => 280000,
-            'sale_price' => null,
-            'stock' => 120,
-            'category_id' => $cat1->id,
-            'is_featured' => true,
-            'status' => true,
-        ]);
-        
-        ProductImage::firstOrCreate(
-            ['product_id' => $p2->id, 'is_primary' => true],
-            ['image_url' => 'https://images.unsplash.com/photo-1604762524889-4b0e41d0e5d7?w=800']
-        );
-        
-        $p3 = Product::firstOrCreate(['slug' => 'french-provence'], [
-            'name' => 'French Provence Luxury Candle',
-            'description' => 'Sophisticated blend inspired by French countryside',
-            'price' => 450000,
-            'sale_price' => 399000,
-            'stock' => 50,
-            'category_id' => $cat2->id,
-            'is_featured' => true,
-            'status' => true,
-        ]);
-        
-        ProductImage::firstOrCreate(
-            ['product_id' => $p3->id, 'is_primary' => true],
-            ['image_url' => 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800']
-        );
+        if (!Product::where('slug', 'french-provence')->exists()) {
+            $p3 = Product::create([
+                'name' => 'French Provence Luxury Candle',
+                'slug' => 'french-provence',
+                'description' => 'Sophisticated blend inspired by French countryside',
+                'price' => 450000,
+                'sale_price' => 399000,
+                'stock' => 50,
+                'category_id' => $cat2->id,
+                'is_featured' => true,
+                'status' => true,
+            ]);
+            
+            ProductImage::create([
+                'product_id' => $p3->id,
+                'image_url' => 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800',
+                'is_primary' => true,
+            ]);
+            $results[] = 'French Provence created';
+        }
         
         return response()->json([
             'success' => true,
             'message' => 'Data seeded successfully',
+            'actions' => $results,
             'data' => [
                 'admin_email' => 'admin@example.com',
                 'admin_password' => '123123',
@@ -118,7 +146,8 @@ Route::post('/seed-data', function () {
         return response()->json([
             'success' => false,
             'error' => $e->getMessage(),
-            'trace' => $e->getTraceAsString(),
+            'line' => $e->getLine(),
+            'file' => $e->getFile(),
         ], 500);
     }
 });
