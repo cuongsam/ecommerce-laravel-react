@@ -10,6 +10,10 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\ProfileController;
 
+// Test route
+Route::get('/test', function () {
+    return 'Web routes working!';
+});
 
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
