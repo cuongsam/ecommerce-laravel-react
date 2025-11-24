@@ -71,6 +71,7 @@ Route::post('/seed-data', function () {
             $p1 = Product::create([
                 'name' => 'Lavender Dreams Candle',
                 'slug' => 'lavender-dreams',
+                'sku' => 'LAV-001',
                 'description' => 'Calming lavender scented candle for relaxation and better sleep',
                 'price' => 250000,
                 'sale_price' => 199000,
@@ -92,6 +93,7 @@ Route::post('/seed-data', function () {
             $p2 = Product::create([
                 'name' => 'Vanilla Bliss Candle',
                 'slug' => 'vanilla-bliss',
+                'sku' => 'VAN-001',
                 'description' => 'Sweet vanilla scent creates a cozy atmosphere',
                 'price' => 280000,
                 'sale_price' => null,
@@ -113,6 +115,7 @@ Route::post('/seed-data', function () {
             $p3 = Product::create([
                 'name' => 'French Provence Luxury Candle',
                 'slug' => 'french-provence',
+                'sku' => 'FRP-001',
                 'description' => 'Sophisticated blend inspired by French countryside',
                 'price' => 450000,
                 'sale_price' => 399000,
@@ -128,6 +131,112 @@ Route::post('/seed-data', function () {
                 'is_primary' => true,
             ]);
             $results[] = 'French Provence created';
+        }
+        
+        // Add more products
+        if (!Product::where('slug', 'ocean-breeze')->exists()) {
+            $p4 = Product::create([
+                'name' => 'Ocean Breeze Candle',
+                'slug' => 'ocean-breeze',
+                'sku' => 'OCE-001',
+                'description' => 'Fresh ocean scent with notes of sea salt and jasmine',
+                'price' => 220000,
+                'sale_price' => 180000,
+                'stock' => 100,
+                'category_id' => $cat1->id,
+                'is_featured' => false,
+                'status' => true,
+            ]);
+            ProductImage::create([
+                'product_id' => $p4->id,
+                'image_url' => 'https://images.unsplash.com/photo-1598662957477-3a5217f1a5e3?w=800',
+                'is_primary' => true,
+            ]);
+            $results[] = 'Ocean Breeze created';
+        }
+        
+        if (!Product::where('slug', 'rose-gold-pillar')->exists()) {
+            $p5 = Product::create([
+                'name' => 'Rose Gold Pillar Candle',
+                'slug' => 'rose-gold-pillar',
+                'sku' => 'RGP-001',
+                'description' => 'Elegant rose gold metallic finish pillar candle',
+                'price' => 320000,
+                'sale_price' => 280000,
+                'stock' => 80,
+                'category_id' => $cat2->id,
+                'is_featured' => true,
+                'status' => true,
+            ]);
+            ProductImage::create([
+                'product_id' => $p5->id,
+                'image_url' => 'https://images.unsplash.com/photo-1602874801006-c2c0b6d6b602?w=800',
+                'is_primary' => true,
+            ]);
+            $results[] = 'Rose Gold Pillar created';
+        }
+        
+        if (!Product::where('slug', 'cinnamon-spice')->exists()) {
+            $p6 = Product::create([
+                'name' => 'Cinnamon Spice Candle',
+                'slug' => 'cinnamon-spice',
+                'sku' => 'CIN-001',
+                'description' => 'Warm cinnamon spice fragrance perfect for autumn',
+                'price' => 240000,
+                'sale_price' => null,
+                'stock' => 90,
+                'category_id' => $cat1->id,
+                'is_featured' => true,
+                'status' => true,
+            ]);
+            ProductImage::create([
+                'product_id' => $p6->id,
+                'image_url' => 'https://images.unsplash.com/photo-1604762524889-4b0e41d0e5d7?w=800',
+                'is_primary' => true,
+            ]);
+            $results[] = 'Cinnamon Spice created';
+        }
+        
+        if (!Product::where('slug', 'eucalyptus-mint')->exists()) {
+            $p7 = Product::create([
+                'name' => 'Eucalyptus Mint Wellness Candle',
+                'slug' => 'eucalyptus-mint',
+                'sku' => 'EUC-001',
+                'description' => 'Therapeutic blend of eucalyptus and peppermint essential oils',
+                'price' => 290000,
+                'sale_price' => 250000,
+                'stock' => 110,
+                'category_id' => $cat1->id,
+                'is_featured' => true,
+                'status' => true,
+            ]);
+            ProductImage::create([
+                'product_id' => $p7->id,
+                'image_url' => 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800',
+                'is_primary' => true,
+            ]);
+            $results[] = 'Eucalyptus Mint created';
+        }
+        
+        if (!Product::where('slug', 'white-jasmine')->exists()) {
+            $p8 = Product::create([
+                'name' => 'White Jasmine Luxury Candle',
+                'slug' => 'white-jasmine',
+                'sku' => 'WJA-001',
+                'description' => 'Delicate white jasmine petals with hints of gardenia',
+                'price' => 480000,
+                'sale_price' => 420000,
+                'stock' => 55,
+                'category_id' => $cat2->id,
+                'is_featured' => true,
+                'status' => true,
+            ]);
+            ProductImage::create([
+                'product_id' => $p8->id,
+                'image_url' => 'https://images.unsplash.com/photo-1598662957477-3a5217f1a5e3?w=800',
+                'is_primary' => true,
+            ]);
+            $results[] = 'White Jasmine created';
         }
         
         return response()->json([
