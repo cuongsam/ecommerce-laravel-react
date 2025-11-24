@@ -83,7 +83,7 @@ Route::post('/seed-data', function () {
             
             ProductImage::create([
                 'product_id' => $p1->id,
-                'image_url' => 'https://images.unsplash.com/photo-1602874801006-c2c0b6d6b602?w=800',
+                'image_path' => 'https://images.unsplash.com/photo-1602874801006-c2c0b6d6b602?w=800',
                 'is_primary' => true,
             ]);
             $results[] = 'Lavender Dreams created';
@@ -105,7 +105,7 @@ Route::post('/seed-data', function () {
             
             ProductImage::create([
                 'product_id' => $p2->id,
-                'image_url' => 'https://images.unsplash.com/photo-1604762524889-4b0e41d0e5d7?w=800',
+                'image_path' => 'https://images.unsplash.com/photo-1604762524889-4b0e41d0e5d7?w=800',
                 'is_primary' => true,
             ]);
             $results[] = 'Vanilla Bliss created';
@@ -127,7 +127,7 @@ Route::post('/seed-data', function () {
             
             ProductImage::create([
                 'product_id' => $p3->id,
-                'image_url' => 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800',
+                'image_path' => 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800',
                 'is_primary' => true,
             ]);
             $results[] = 'French Provence created';
@@ -149,7 +149,7 @@ Route::post('/seed-data', function () {
             ]);
             ProductImage::create([
                 'product_id' => $p4->id,
-                'image_url' => 'https://images.unsplash.com/photo-1598662957477-3a5217f1a5e3?w=800',
+                'image_path' => 'https://images.unsplash.com/photo-1598662957477-3a5217f1a5e3?w=800',
                 'is_primary' => true,
             ]);
             $results[] = 'Ocean Breeze created';
@@ -170,7 +170,7 @@ Route::post('/seed-data', function () {
             ]);
             ProductImage::create([
                 'product_id' => $p5->id,
-                'image_url' => 'https://images.unsplash.com/photo-1602874801006-c2c0b6d6b602?w=800',
+                'image_path' => 'https://images.unsplash.com/photo-1602874801006-c2c0b6d6b602?w=800',
                 'is_primary' => true,
             ]);
             $results[] = 'Rose Gold Pillar created';
@@ -191,7 +191,7 @@ Route::post('/seed-data', function () {
             ]);
             ProductImage::create([
                 'product_id' => $p6->id,
-                'image_url' => 'https://images.unsplash.com/photo-1604762524889-4b0e41d0e5d7?w=800',
+                'image_path' => 'https://images.unsplash.com/photo-1604762524889-4b0e41d0e5d7?w=800',
                 'is_primary' => true,
             ]);
             $results[] = 'Cinnamon Spice created';
@@ -212,7 +212,7 @@ Route::post('/seed-data', function () {
             ]);
             ProductImage::create([
                 'product_id' => $p7->id,
-                'image_url' => 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800',
+                'image_path' => 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800',
                 'is_primary' => true,
             ]);
             $results[] = 'Eucalyptus Mint created';
@@ -233,7 +233,7 @@ Route::post('/seed-data', function () {
             ]);
             ProductImage::create([
                 'product_id' => $p8->id,
-                'image_url' => 'https://images.unsplash.com/photo-1598662957477-3a5217f1a5e3?w=800',
+                'image_path' => 'https://images.unsplash.com/photo-1598662957477-3a5217f1a5e3?w=800',
                 'is_primary' => true,
             ]);
             $results[] = 'White Jasmine created';
