@@ -2,7 +2,10 @@
 nixPkgs = ["php82", "php82Packages.composer"]
 
 [phases.install]
-cmds = ["composer install --optimize-autoloader --no-dev"]
+cmds = [
+  "cp .env.example .env",
+  "composer install --optimize-autoloader --no-dev"
+]
 
 [phases.build]
 cmds = [
