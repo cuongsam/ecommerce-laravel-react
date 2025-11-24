@@ -21,7 +21,7 @@ class ProductionSeeder extends Seeder
                 'email' => 'admin@example.com',
                 'email_verified_at' => now(),
                 'password' => bcrypt('123123'),
-                'role' => '2',
+                'role' => 'admin',
                 'phone' => '0123456789',
                 'address' => 'Hanoi, Vietnam',
             ]);
